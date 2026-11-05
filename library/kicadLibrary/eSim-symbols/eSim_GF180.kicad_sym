@@ -26,6 +26,25 @@
       (pin passive line (at 2.54 -7.62 90) (length 2.54) (name "S" (effects (font (size 1.27 1.27)))) (number "3" (effects (font (size 1.27 1.27)))))
       (pin passive line (at 5.08 -3.81 180) (length 2.54) (name "B" (effects (font (size 1.27 1.27)))) (number "4" (effects (font (size 1.27 1.27)))))))
 
+  (symbol "nfet_05v0" (extends "nfet_03v3")
+    (property "Value" "nfet_05v0" (at 2.54 0 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Datasheet" "GF180MCU 5.0V NMOS" (at 0 0 0) (effects (font (size 1.27 1.27)) hide)))
+
+  (symbol "nfet_06v0" (extends "nfet_03v3")
+    (property "Value" "nfet_06v0" (at 2.54 0 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Datasheet" "GF180MCU 6.0V NMOS" (at 0 0 0) (effects (font (size 1.27 1.27)) hide)))
+
+  (symbol "nfet_05v0_nvt" (extends "nfet_03v3")
+    (property "Value" "nfet_05v0_nvt" (at 2.54 0 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Datasheet" "GF180MCU 5.0V Native Low-Vth NMOS" (at 0 0 0) (effects (font (size 1.27 1.27)) hide)))
+
+  (symbol "nfet_03v3_dss" (extends "nfet_03v3")
+    (property "Value" "nfet_03v3_dss" (at 2.54 0 0) (effects (font (size 1.27 1.27)) (justify left))))
+
+  (symbol "esd_nfet_03v3" (extends "nfet_03v3")
+    (property "Value" "esd_nfet_03v3" (at 2.54 0 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Datasheet" "GF180MCU 3.3V ESD NMOS" (at 0 0 0) (effects (font (size 1.27 1.27)) hide)))
+
   (symbol "pfet_03v3" (pin_names (offset 0.254)) (exclude_from_sim no) (in_bom yes) (on_board yes)
     (property "Reference" "gf" (at 2.54 2.54 0) (effects (font (size 1.27 1.27)) (justify left)))
     (property "Value" "pfet_03v3" (at 2.54 0 0) (effects (font (size 1.27 1.27)) (justify left)))
@@ -49,4 +68,105 @@
       (pin passive line (at 2.54 -7.62 90) (length 2.54) (name "D" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))
       (pin passive line (at 2.54 7.62 270) (length 2.54) (name "S" (effects (font (size 1.27 1.27)))) (number "3" (effects (font (size 1.27 1.27)))))
       (pin passive line (at 5.08 3.81 180) (length 2.54) (name "B" (effects (font (size 1.27 1.27)))) (number "4" (effects (font (size 1.27 1.27)))))))
+
+  (symbol "pfet_05v0" (extends "pfet_03v3")
+    (property "Value" "pfet_05v0" (at 2.54 0 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Datasheet" "GF180MCU 5.0V PMOS" (at 0 0 0) (effects (font (size 1.27 1.27)) hide)))
+
+  (symbol "pfet_06v0" (extends "pfet_03v3")
+    (property "Value" "pfet_06v0" (at 2.54 0 0) (effects (font (size 1.27 1.27)) (justify left)))
+    (property "Datasheet" "GF180MCU 6.0V PMOS" (at 0 0 0) (effects (font (size 1.27 1.27)) hide)))
+
+  (symbol "esd_pfet_03v3" (extends "pfet_03v3")
+    (property "Value" "esd_pfet_03v3" (at 2.54 0 0) (effects (font (size 1.27 1.27)) (justify left))))
+
+  ;; Resistors
+  (symbol "res_nplus_s" (pin_numbers hide) (pin_names (offset 0)) (exclude_from_sim no) (in_bom yes) (on_board yes)
+    (property "Reference" "R" (at 2.032 0 90) (effects (font (size 1.27 1.27))))
+    (property "Value" "res_nplus_s" (at 0 0 90) (effects (font (size 1.27 1.27))))
+    (property "Datasheet" "GF180MCU N+ Poly Silicide Resistor" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (symbol "res_0_1"
+      (polyline (pts (xy 0 -2.54) (xy -0.889 -1.905) (xy 0.889 -1.27) (xy -0.889 -0.635) (xy 0.889 0) (xy -0.889 0.635) (xy 0.889 1.27) (xy -0.889 1.905) (xy 0 2.54)) (stroke (width 0.254) (type default)) (fill (type none))))
+    (symbol "res_1_1"
+      (pin passive line (at 0 3.81 270) (length 1.27) (name "~" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))
+      (pin passive line (at 0 -3.81 90) (length 1.27) (name "~" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27)))))))
+
+  (symbol "res_pplus_s" (extends "res_nplus_s")
+    (property "Value" "res_pplus_s" (at 0 0 90) (effects (font (size 1.27 1.27))))
+    (property "Datasheet" "GF180MCU P+ Poly Silicide Resistor" (at 0 0 0) (effects (font (size 1.27 1.27)) hide)))
+
+  (symbol "res_nplus_u" (extends "res_nplus_s")
+    (property "Value" "res_nplus_u" (at 0 0 90) (effects (font (size 1.27 1.27))))
+    (property "Datasheet" "GF180MCU N+ Poly Unsilicide High-R Resistor" (at 0 0 0) (effects (font (size 1.27 1.27)) hide)))
+
+  (symbol "res_pplus_u" (extends "res_nplus_s")
+    (property "Value" "res_pplus_u" (at 0 0 90) (effects (font (size 1.27 1.27))))
+    (property "Datasheet" "GF180MCU P+ Poly Unsilicide High-R Resistor" (at 0 0 0) (effects (font (size 1.27 1.27)) hide)))
+
+  (symbol "res_nwell" (extends "res_nplus_s")
+    (property "Value" "res_nwell" (at 0 0 90) (effects (font (size 1.27 1.27))))
+    (property "Datasheet" "GF180MCU N-Well Diffusion Resistor" (at 0 0 0) (effects (font (size 1.27 1.27)) hide)))
+
+  (symbol "res_metal1" (extends "res_nplus_s")
+    (property "Value" "res_metal1" (at 0 0 90) (effects (font (size 1.27 1.27))))
+    (property "Datasheet" "GF180MCU Metal 1 Resistor" (at 0 0 0) (effects (font (size 1.27 1.27)) hide)))
+
+  ;; Capacitors
+  (symbol "cap_mim_1f5_ff2" (pin_numbers hide) (pin_names (offset 0)) (exclude_from_sim no) (in_bom yes) (on_board yes)
+    (property "Reference" "C" (at 2.54 0 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "cap_mim_1f5_ff2" (at 2.54 -2.54 0) (effects (font (size 1.27 1.27))))
+    (property "Datasheet" "GF180MCU 1.5fF/um2 MIM Capacitor" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (symbol "cap_0_1"
+      (polyline (pts (xy -2.032 -0.762) (xy 2.032 -0.762)) (stroke (width 0.508) (type default)) (fill (type none)))
+      (polyline (pts (xy -2.032 0.762) (xy 2.032 0.762)) (stroke (width 0.508) (type default)) (fill (type none))))
+    (symbol "cap_1_1"
+      (pin passive line (at 0 3.81 270) (length 3.048) (name "~" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))
+      (pin passive line (at 0 -3.81 90) (length 3.048) (name "~" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27)))))))
+
+  (symbol "cap_mim_1f0_ff2" (extends "cap_mim_1f5_ff2")
+    (property "Value" "cap_mim_1f0_ff2" (at 2.54 -2.54 0) (effects (font (size 1.27 1.27))))
+    (property "Datasheet" "GF180MCU 1.0fF/um2 MIM Capacitor" (at 0 0 0) (effects (font (size 1.27 1.27)) hide)))
+
+  (symbol "cap_mim_2f0_ff2" (extends "cap_mim_1f5_ff2")
+    (property "Value" "cap_mim_2f0_ff2" (at 2.54 -2.54 0) (effects (font (size 1.27 1.27))))
+    (property "Datasheet" "GF180MCU 2.0fF/um2 MIM Capacitor" (at 0 0 0) (effects (font (size 1.27 1.27)) hide)))
+
+  ;; Diodes
+  (symbol "diode_nd2p_03v3" (pin_numbers hide) (pin_names (offset 0)) (exclude_from_sim no) (in_bom yes) (on_board yes)
+    (property "Reference" "D" (at 2.54 0 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "diode_nd2p_03v3" (at 2.54 -2.54 0) (effects (font (size 1.27 1.27))))
+    (property "Datasheet" "GF180MCU N+/P-sub Diode" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (symbol "diode_0_1"
+      (polyline (pts (xy -1.27 1.27) (xy 1.27 0) (xy -1.27 -1.27) (xy -1.27 1.27)) (stroke (width 0.254) (type default)) (fill (type outline)))
+      (polyline (pts (xy 1.27 1.27) (xy 1.27 -1.27)) (stroke (width 0.254) (type default)) (fill (type none))))
+    (symbol "diode_1_1"
+      (pin passive line (at -3.81 0 0) (length 2.54) (name "A" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))
+      (pin passive line (at 3.81 0 180) (length 2.54) (name "K" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27)))))))
+
+  (symbol "diode_pd2n_03v3" (extends "diode_nd2p_03v3")
+    (property "Value" "diode_pd2n_03v3" (at 2.54 -2.54 0) (effects (font (size 1.27 1.27))))
+    (property "Datasheet" "GF180MCU P+/N-well Diode" (at 0 0 0) (effects (font (size 1.27 1.27)) hide)))
+
+  (symbol "sc_diode" (extends "diode_nd2p_03v3")
+    (property "Value" "sc_diode" (at 2.54 -2.54 0) (effects (font (size 1.27 1.27))))
+    (property "Datasheet" "GF180MCU Schottky Barrier Diode" (at 0 0 0) (effects (font (size 1.27 1.27)) hide)))
+
+  ;; BJT
+  (symbol "vnpn_03v3" (pin_names (offset 0)) (exclude_from_sim no) (in_bom yes) (on_board yes)
+    (property "Reference" "Q" (at 2.54 0 0) (effects (font (size 1.27 1.27))))
+    (property "Value" "vnpn_03v3" (at 2.54 -2.54 0) (effects (font (size 1.27 1.27))))
+    (property "Datasheet" "GF180MCU Vertical NPN BJT" (at 0 0 0) (effects (font (size 1.27 1.27)) hide))
+    (symbol "bjt_0_1"
+      (polyline (pts (xy 0 1.27) (xy 0 -1.27)) (stroke (width 0.508) (type default)) (fill (type none)))
+      (polyline (pts (xy 0 0.635) (xy 1.27 1.905)) (stroke (width 0.254) (type default)) (fill (type none)))
+      (polyline (pts (xy 0 -0.635) (xy 1.27 -1.905)) (stroke (width 0.254) (type default)) (fill (type none)))
+      (circle (center 0.635 0) (radius 2.54) (stroke (width 0.254) (type default)) (fill (type background))))
+    (symbol "bjt_1_1"
+      (pin passive line (at 2.54 5.08 270) (length 3.175) (name "C" (effects (font (size 1.27 1.27)))) (number "1" (effects (font (size 1.27 1.27)))))
+      (pin passive line (at -5.08 0 0) (length 5.08) (name "B" (effects (font (size 1.27 1.27)))) (number "2" (effects (font (size 1.27 1.27)))))
+      (pin passive line (at 2.54 -5.08 90) (length 3.175) (name "E" (effects (font (size 1.27 1.27)))) (number "3" (effects (font (size 1.27 1.27)))))))
+
+  (symbol "vpnp_03v3" (extends "vnpn_03v3")
+    (property "Value" "vpnp_03v3" (at 2.54 -2.54 0) (effects (font (size 1.27 1.27))))
+    (property "Datasheet" "GF180MCU Vertical PNP BJT" (at 0 0 0) (effects (font (size 1.27 1.27)) hide)))
 )
