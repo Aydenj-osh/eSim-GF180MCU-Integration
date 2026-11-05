@@ -1,0 +1,15 @@
+* GF180_OpAmp (eSim netlist via kicad-cli kicadxml)
+* Sheet Name: /
+cc net__cc_pad1 net__cc_pad2 1.2p
+cload net__cc_pad2 unconnected__cload_pad2 10p
+m1 net__m1_d unconnected__m1_g_pad2 net__m1_s unconnected__m1_b_pad4 nfet_03v3
+m2 net__m2_d unconnected__m2_g_pad2 net__m1_s unconnected__m2_b_pad4 nfet_03v3
+m3 net__m1_d net__m3_g unconnected__m3_s_pad3 unconnected__m3_b_pad4 pfet_03v3
+m4 net__m2_d net__m3_g unconnected__m4_s_pad3 unconnected__m4_b_pad4 pfet_03v3
+m5 net__m1_s net__m5_g unconnected__m5_s_pad3 unconnected__m5_b_pad4 nfet_03v3
+m6 net__m6_d net__m6_g unconnected__m6_s_pad3 unconnected__m6_b_pad4 pfet_03v3
+m7 net__m6_d net__m5_g unconnected__m7_s_pad3 unconnected__m7_b_pad4 nfet_03v3
+m8 net__m8_d net__m5_g unconnected__m8_s_pad3 unconnected__m8_b_pad4 nfet_03v3
+rbias unconnected__rbias_pad1 net__m8_d 40k
+rz net__m6_g net__cc_pad1 1k
+.end

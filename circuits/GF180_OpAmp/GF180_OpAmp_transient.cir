@@ -1,0 +1,51 @@
+* GF180MCU Two-Stage CMOS Op-Amp Unity-Gain Buffer Transient Step Response
+.title GF180MCU Op-Amp Closed-Loop Step Response
+
+.lib "gf180mcu.lib" tt
+
+.global vdd gnd
+
+Vdd vdd 0 DC 3.3
+
+* Bias Network
+Rbias vdd vbias 40k
+M8 vbias vbias 0 0 nfet_03v3 W=10.0u L=0.5u
+
+* Differential Input Stage
+M5 n_tail vbias 0 0 nfet_03v3 W=20.0u L=0.5u
+
+* Non-inverting input: Step from 1.2V to 1.8V (around mid-rail)
+Vin inp 0 PULSE(1.2 1.8 50n 1n 1n 200n 400n)
+
+* Closed-loop negative feedback: Inverting input connected to Vout
+M1 n1 vout n_tail 0 nfet_03v3 W=10.0u L=0.5u
+M2 n2 inp n_tail 0 nfet_03v3 W=10.0u L=0.5u
+
+* Active load
+M3 n1 n1 vdd vdd pfet_03v3 W=20.0u L=0.5u
+M4 n2 n1 vdd vdd pfet_03v3 W=20.0u L=0.5u
+
+* Second stage
+M6 vout n2 vdd vdd pfet_03v3 W=40.0u L=0.5u
+M7 vout vbias 0 0 nfet_03v3 W=40.0u L=0.5u
+
+* Miller Compensation
+Rz n2 n_cc 1k
+Cc n_cc vout 1.2p
+
+Cload vout 0 5p
+
+.control
+tran 0.2n 500n
+run
+echo "=== CLOSED LOOP BUFFER TRANSIENT DONE ==="
+meas tran v_initial find v(vout) at=40n
+meas tran v_final find v(vout) at=150n
+meas tran t_rise trig v(vout) val=1.26 rise=1 targ v(vout) val=1.74 rise=1
+meas tran slew_rate expr=(1.74-1.26)/t_rise
+
+wrdata opamp_transient_step.txt v(inp) v(vout)
+quit
+.endc
+
+.end
