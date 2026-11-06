@@ -1,4 +1,4 @@
-* GF180MCU Two-Stage CMOS Op-Amp Simulation
+* GF180MCU Two-Stage CMOS Op-Amp Simulation (Unity-Gain Buffer Transient & AC)
 .lib "gf180mcu.lib" tt
 
 * Power Supplies
@@ -9,10 +9,10 @@ Vss vss 0 DC 0.0
 M8 vbias vbias vss vss nfet_03v3 W=10.0u L=0.5u
 Rbias vdd vbias 40k
 
-* Differential Pair & Tail Current Sink
+* Differential Pair in Unity-Gain Feedback Configuration
 M5 n_tail vbias vss vss nfet_03v3 W=20.0u L=0.5u
-M1 n1 vin_minus n_tail vss nfet_03v3 W=10.0u L=0.5u
-M2 n2 vin_plus  n_tail vss nfet_03v3 W=10.0u L=0.5u
+M1 n1 vout   n_tail vss nfet_03v3 W=10.0u L=0.5u
+M2 n2 vin_step n_tail vss nfet_03v3 W=10.0u L=0.5u
 M3 n1 n1 vdd vdd pfet_03v3 W=20.0u L=0.5u
 M4 n2 n1 vdd vdd pfet_03v3 W=20.0u L=0.5u
 
@@ -25,17 +25,10 @@ Rz n2 n_cc 1k
 Cc n_cc vout 1.2p
 Cload vout 0 10p
 
-* Input Stimulus (Common-mode + Differential AC)
-Vin_cm in_cm 0 DC 1.65
-Vac_diff ac_diff 0 DC 0 AC 1.0
-E1 vin_plus  in_cm ac_diff 0 0.5
-E2 vin_minus in_cm ac_diff 0 -0.5
+* Input Pulse (1.2V to 1.8V buffer test step)
+Vin_step vin_step 0 PULSE(1.2 1.8 100u 1u 1u 400u 1m)
 
-* Transient Pulse for Time-Domain Plotting
-Vin_step vin_step 0 PULSE(1.2 1.8 10u 100n 100n 500u 1m)
-
-.ac dec 50 1 1G
-.tran 10u 1m 0
+.tran 1u 1m 0
 
 * Control Statements
 .control
