@@ -1,0 +1,44 @@
+* C:\Users\AydenJoshua\eSim-Workspace\GF180_OpAmp\GF180_OpAmp.cir
+.lib "gf180mcu.lib" tt
+
+* Power Supply
+Vdd vdd 0 DC 3.3
+Vss vss 0 DC 0.0
+
+* Biasing Network
+M8 vbias vbias 0 0 nfet_03v3 W=10.0u L=0.5u
+Rbias vdd vbias 40k
+
+* Differential Pair & Tail Sink
+M5 n_tail vbias 0 0 nfet_03v3 W=20.0u L=0.5u
+M1 n1 vin_minus n_tail 0 nfet_03v3 W=10.0u L=0.5u
+M2 n2 vin_plus  n_tail 0 nfet_03v3 W=10.0u L=0.5u
+M3 n1 n1 vdd vdd pfet_03v3 W=20.0u L=0.5u
+M4 n2 n1 vdd vdd pfet_03v3 W=20.0u L=0.5u
+
+* Second Gain Stage
+M6 vout n2 vdd vdd pfet_03v3 W=40.0u L=0.5u
+M7 vout vbias 0 0 nfet_03v3 W=40.0u L=0.5u
+
+* Miller Compensation & Load
+Rz n2 n_cc 1k
+Cc n_cc vout 1.2p
+Cload vout 0 10p
+
+* Input Sources
+Vin_cm in_cm 0 DC 1.65
+Vac_diff ac_diff 0 DC 0 AC 1.0
+E1 vin_plus  in_cm ac_diff 0 0.5
+E2 vin_minus in_cm ac_diff 0 -0.5
+
+.ac dec 50 1 1G
+
+* Control Statements
+.control
+run
+let gain_db = vdb(vout)
+let phase_deg = cph(vout)*180/pi
+print v(vout) > plot_data_v.txt
+plot gain_db ylabel "Gain (dB)" xlabel "Frequency (Hz)" title "GF180 Op-Amp AC Gain"
+.endc
+.end
